@@ -1,0 +1,153 @@
+.account-wrapper{
+    background-color: #f9f9f9;
+}
+
+.account-content{
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding-bottom: 100px;
+}
+
+.user-tab{
+    width: 700px;
+    height: 100%;
+    margin: 30px auto 0;
+    background: #fff;
+    border: 1px solid #e1e1e1;
+}
+
+.user-tab-nav{
+    background: #f2f2f2;
+    border-bottom: 1px solid #e1e1e1;
+    padding: 0 32px;
+}
+
+.user-tab-menu{
+    padding: 0;
+    margin: 0;
+    position: relative;
+    bottom: -1px;
+}
+
+.user-tab-item{
+    list-style-type: none;
+    color: #818181;
+    padding: 16px;
+    font-size: 15px;
+    border-bottom: 1px solid transparent;
+    display: inline-block;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+
+.user-tab-active{
+    color: #4a4a4a;
+    font-weight: 500;
+    border-bottom: 1px solid #fff;
+    background: #fff;
+}
+
+.user-tab-content{
+    padding: 16px;
+}
+
+.user-profile-banner{
+    width: 100%;
+    height: 150px;
+    position: relative;
+}
+
+.user-profile-banner-wrapper{
+    width: 100%;
+    height: 100%;
+}
+
+.user-profile-banner-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-profile-avatar-wrapper{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    position: absolute;
+    left: 16px;
+    bottom: -40%;
+}
+
+.user-profile-img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-profile-edit{
+    position: absolute;
+    right: 12px;
+    bottom: -12%;
+    font-size: 12px;
+    padding: 12px 16px;
+    background: #101010;
+    border: 1px solid #101010;
+    color: #fff;
+    font-weight: 500;
+    transition: all .3s ease;
+}
+
+.user-profile-edit:hover{
+    cursor: pointer;
+    background: #2a2a2a;
+    border: 1px solid #2a2a2a;
+}
+
+.user-profile-details{
+    padding: 95px 16px 32px;
+}
+
+.user-profile-name{
+    color: #1a1a1a;
+    display: block;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+span{
+    font-size: 12px;
+}
+
+h5{
+    font-size: 13.8px;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.text-italic{
+    font-style: italic;
+    color: #818181;
+}
+
+.loader{
+    min-height: 80vh;
+    width: 100%;
+    box-sizing: border-box;
+    background: #f2f2f2;
+    position: relative;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h3{
+    font-weight: 500;
+}
+
+.text{
+    font-weight: 500;
+}

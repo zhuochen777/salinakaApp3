@@ -1,0 +1,111 @@
+
+.cart-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-top p {
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 12px;
+}
+
+h2 {
+    font-size: 19px;
+    display: inline-block;
+}
+
+.all-cart-items {
+    height: 500px;
+}
+
+.cart-item {
+    display: flex;
+    border: 1px solid #e1e1e1;
+    margin: 10px 0;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+}
+
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+    font-size: 12px !important;
+    color: black !important;
+    border-color: #e1e1e1 !important;
+}
+
+.cart-item-btn {
+    height: 88px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.cart-item-btn button{
+    height: 50%;
+    width: 35px;
+    border: 1px solid #e1e1e1;
+    background-color: white;
+    color: #4a4a4a;
+}
+
+.cart-item-desc h4 {
+    font-size: 14px;
+    margin: 0;
+    width: 142px;
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 10px;
+}
+
+.cart-item-detail {
+    display: flex;
+    height: 50%;
+}
+
+.quantity, .size, .color {
+    width: 100%;
+    padding: 10px;
+}
+
+.color {
+    display: flex;
+}
+
+.close-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #e1e1e1;
+    background-color: white;
+    color: #4a4a4a;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #e1e1e1;
+}
+
+.total-title {
+    font-size: 12px;
+    color: #4a4a4a;
+    line-height: 2.4rem;
+}
+
+.total h2 {
+    font-size: 24px;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.cart-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkout-btn {
+    height: 50px !important;
+    color: white !important;
+    background-color: black !important; 
+}
