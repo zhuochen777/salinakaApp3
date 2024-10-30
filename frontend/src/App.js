@@ -6,13 +6,14 @@ import { useRoutes } from "react-router-dom";
 export const isSignedinContext = createContext();
 
 function App() {
+  let url = process.env.REACT_APP_baseURL;
   const element = useRoutes(routers);
   const [isSignedin, setIsSignedin] = useState(false);
   const [signupInfo, setSignupInfo] = useState(null);
 
   useEffect(() => {
     const getUser = async () => {
-      fetch("http://localhost:5000/auth/login/success", {
+      fetch(url + "/auth/login/success", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -24,22 +25,19 @@ function App() {
         .then((res) => {
           if (res.status === 200) {
             return res.json();
-            
           }
           throw new Error("Authentication has been failed");
         })
         .then((resObject) => {
           setSignupInfo(resObject.user);
-          setIsSignedin(true)     
+          setIsSignedin(true);
         })
         .catch((err) => {
           console.log(err);
         });
-      };
-      getUser();   
-      
-    }, []);
-    
+    };
+    getUser();
+  }, []);
 
   return (
     <>
