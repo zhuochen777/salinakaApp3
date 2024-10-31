@@ -88,7 +88,7 @@ export default function Account() {
                   ? signupInfo.email: signupInfo.emails[0].value?signupInfo.emails[0].value
                   : signupInfo.providerData[0].email}</h5> */}
                   <h5>
-                    {signupInfo.providerData[0].email
+                    {signupInfo.providerData
                       ? signupInfo.providerData[0].email
                       : signupInfo.email}
                   </h5>
