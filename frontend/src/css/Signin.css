@@ -6,3 +6,35 @@
     padding: 12px 16px;
     cursor: pointer;
 }
+
+.auth.red{
+    border: 1px solid red;
+}
+
+.warning{
+    visibility: hidden;
+    border: 1px solid rgba(247, 45, 45, .986);
+    padding: 1.6rem;
+    background: rgba(254, 242, 242, .986);
+    color: rgba(247, 45, 45, .986);
+    text-align: center;
+    margin: 22px 0;
+    font-size: 13.5px;
+    box-sizing: border-box;
+}
+
+.warning.red{
+    visibility: visible;
+    border: 1px solid rgba(247, 45, 45, .986);
+    padding: 1.6rem;
+    background: rgba(254, 242, 242, .986);
+    color: rgba(247, 45, 45, .986);
+    text-align: center;
+    margin: 22px 0;
+    font-size: 13.5px;
+    box-sizing: border-box;
+}
+
+.signin-wrapper .content{
+    padding-top: 0;
+}

@@ -6,6 +6,13 @@ import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../component/FormInput.jsx";
 import Nav from "../component/Nav.jsx";
 import { isSignedinContext } from "../App.js";
+import {
+  auth,
+  provider_google,
+  provider_github,
+  provider_facebook,
+} from "../config/firebase-config.js";
+import { signInWithPopup,signInWithRedirect } from "firebase/auth";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -88,15 +95,25 @@ export default function Signin() {
     return true;
   };
 
-  const googleHandle = () => {
-    window.open("http://localhost:5000/auth/google", "_self");
+  const handleGoogleClick = () => {
+    signInWithPopup(auth, provider_google).then((data) => {
+      setSignupInfo(data.user);
+      setIsSignedin(true);
+    });
   };
 
-  const githubHandle = () => {
-    window.open("http://localhost:5000/auth/github", "_self");
+  const handleGithubClick = () => {
+    signInWithPopup(auth, provider_github).then((data) => {
+      setSignupInfo(data.user);
+      setIsSignedin(true);
+    });
   };
-  const facebookHandle = () => {
-    window.open("http://localhost:5000/auth/facebook", "_self");
+
+  const handleFacebookClick = () => {
+    signInWithRedirect(auth, provider_facebook).then((data) => {
+      setSignupInfo(data.user);
+      setIsSignedin(true);
+    })
   };
 
   useEffect(() => {
@@ -124,9 +141,9 @@ export default function Signin() {
       <div className="signin-wrapper">
         <Nav />
         <div className="content">
-          {showWarning && <div>warning</div>}
           <div className="auth-content">
-            <div className="auth">
+        <div className={showWarning? "warning red":"warning"}>Incorrect email or password</div>
+            <div className={showWarning?"auth red":"auth"}>
               <div className="auth-main">
                 <h3>Sign in to Salinaka</h3>
                 <form action="#" onSubmit={(e) => handleSubmit(e)}>
@@ -188,7 +205,10 @@ export default function Signin() {
                 <h6>OR</h6>
               </div>
               <div className="auth-provider">
-                <button className="auth-provider-button provider-facebook" onClick={() => facebookHandle()}>
+                <button
+                  className="auth-provider-button provider-facebook"
+                  onClick={() => handleFacebookClick()}
+                >
                   <span className="anticon">
                     <svg
                       viewBox="64 64 896 896"
@@ -206,7 +226,7 @@ export default function Signin() {
                 </button>
                 <button
                   className="auth-provider-button provider-google"
-                  onClick={() => googleHandle()}
+                  onClick={() => handleGoogleClick()}
                 >
                   <span className="anticon">
                     <svg
@@ -225,7 +245,7 @@ export default function Signin() {
                 </button>
                 <button
                   className="auth-provider-button provider-github"
-                  onClick={() => githubHandle()}
+                  onClick={() => handleGithubClick()}
                 >
                   <span className="anticon">
                     <svg

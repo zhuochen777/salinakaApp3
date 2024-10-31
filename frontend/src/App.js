@@ -11,34 +11,9 @@ function App() {
   const [isSignedin, setIsSignedin] = useState(false);
   const [signupInfo, setSignupInfo] = useState(null);
 
-  useEffect(() => {
-    const getUser = async () => {
-      fetch(url + "/auth/login/success", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
-      })
-        .then((res) => {
-          if (res.status === 200) {
-            return res.json();
-          }
-          throw new Error("Authentication has been failed");
-        })
-        .then((resObject) => {
-          setSignupInfo(resObject.user);
-          setIsSignedin(true);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getUser();
-  }, []);
-
+  
+  console.log(signupInfo);
+  
   return (
     <>
       <isSignedinContext.Provider

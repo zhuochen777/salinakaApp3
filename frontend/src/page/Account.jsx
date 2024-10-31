@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Nav from "../component/Nav";
 import "../css/Account.css";
 import { isSignedinContext } from "../App.js";
@@ -6,7 +6,7 @@ import { isSignedinContext } from "../App.js";
 export default function Account() {
   const [tabContent, setTabContent] = useState("account");
   const { isSignedin, setIsSignedin, signupInfo, setSignupInfo } =
-  useContext(isSignedinContext);
+    useContext(isSignedinContext);
 
   const tabContentHandle = (content) => {
     setTabContent(content);
@@ -20,19 +20,31 @@ export default function Account() {
           <div className="user-tab-nav">
             <ul className="user-tab-menu">
               <li
-                className={tabContent==="account"? "user-tab-item user-tab-active":"user-tab-item"}
+                className={
+                  tabContent === "account"
+                    ? "user-tab-item user-tab-active"
+                    : "user-tab-item"
+                }
                 onClick={() => tabContentHandle("account")}
               >
                 Account
               </li>
               <li
-                className={tabContent==="wishList"? "user-tab-item user-tab-active":"user-tab-item"}
+                className={
+                  tabContent === "wishList"
+                    ? "user-tab-item user-tab-active"
+                    : "user-tab-item"
+                }
                 onClick={() => tabContentHandle("wishList")}
               >
                 My Wish List
               </li>
               <li
-                className={tabContent==="orders"? "user-tab-item user-tab-active":"user-tab-item"}
+                className={
+                  tabContent === "orders"
+                    ? "user-tab-item user-tab-active"
+                    : "user-tab-item"
+                }
                 onClick={() => tabContentHandle("orders")}
               >
                 My Orders
@@ -54,8 +66,8 @@ export default function Account() {
                     <img
                       className="user-profile-img"
                       src={
-                        signupInfo.photos
-                          ? signupInfo.photos[0].value
+                        signupInfo.photoURL
+                          ? signupInfo.photoURL
                           : "https://salinaka-ecommerce.web.app/images/defaultAvatar.4e9edb2a624547982816014bf128fcd5.jpg"
                       }
                       alt="avatar"
@@ -64,14 +76,22 @@ export default function Account() {
                   <button className="user-profile-edit">Edit Account</button>
                 </div>
                 <div className="user-profile-details">
-                  <h2 className="user-profile-name"> {signupInfo.fullname
-                  ? signupInfo.fullname
-                  : signupInfo.displayName}</h2>
+                  <h2 className="user-profile-name">
+                    {" "}
+                    {signupInfo.fullname
+                      ? signupInfo.fullname
+                      : signupInfo.displayName}
+                  </h2>
                   <span>Email</span>
                   <br />
-                  <h5>{signupInfo.email
-                  ? signupInfo.email
-                  : signupInfo.emails[0].value}</h5>
+                  {/* <h5>{signupInfo.email
+                  ? signupInfo.email: signupInfo.emails[0].value?signupInfo.emails[0].value
+                  : signupInfo.providerData[0].email}</h5> */}
+                  <h5>
+                    {signupInfo.providerData[0].email
+                      ? signupInfo.providerData[0].email
+                      : signupInfo.email}
+                  </h5>
                   <span>Address</span>
                   <br />
                   <h5 className="text-italic">Address not set</h5>
@@ -80,7 +100,11 @@ export default function Account() {
                   <h5></h5>
                   <span>Date Joined</span>
                   <br />
-                  <h5>{signupInfo.createdDate? signupInfo.createdDate: "5/24/2024"}</h5>
+                  <h5>
+                    {signupInfo.createdDate
+                      ? signupInfo.createdDate
+                      : "5/24/2024"}
+                  </h5>
                 </div>
               </div>
             )}

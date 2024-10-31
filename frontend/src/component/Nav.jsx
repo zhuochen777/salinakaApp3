@@ -32,16 +32,11 @@ export default function Nav() {
     setNavUserOpen(!navUserOpen);
   };
 
-  //logout with google github facebook signin
-  const logout = () => {
-    window.open("http://localhost:5000/auth/logout", "_self");
-  };
 
   const signOutHandle = () => {
     localStorage.clear();
     setIsSignedin(false);
     setSignupInfo(null);
-    logout();
     navigate("/signin");
   };
 
@@ -119,14 +114,14 @@ export default function Nav() {
               <h5 className="user-name">
                 {signupInfo.fullname
                   ? signupInfo.fullname
-                  : signupInfo.displayName}
+                  : signupInfo.displayName} 
               </h5>
               <div className="user-nav-img-wrapper">
                 <img
                   className="user-nav-img"
                   src={
-                    signupInfo.photos
-                      ? signupInfo.photos[0].value
+                    signupInfo.photoURL
+                      ? signupInfo.photoURL
                       : "https://salinaka-ecommerce.web.app/images/defaultAvatar.4e9edb2a624547982816014bf128fcd5.jpg"
                   }
                   alt="avatar"

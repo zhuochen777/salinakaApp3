@@ -8,6 +8,13 @@ import FormInput from "../component/FormInput.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { isSignedinContext } from "../App.js";
+import {
+  auth,
+  provider_google,
+  provider_github,
+  provider_facebook,
+} from "../config/firebase-config.js";
+import { signInWithPopup,signInWithRedirect } from "firebase/auth";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -127,12 +134,25 @@ export default function Signup() {
     return true;
   };
 
-  const googleHandle = () => {
-    window.open("http://localhost:5000/auth/google", "_self");
+  const handleGoogleClick = () => {
+    signInWithPopup(auth, provider_google).then((data) => {
+      setSignupInfo(data.user);
+      setIsSignedin(true);
+    });
   };
 
-  const githubHandle = () => {
-    window.open("http://localhost:5000/auth/github", "_self");
+  const handleGithubClick = () => {
+    signInWithPopup(auth, provider_github).then((data) => {
+      setSignupInfo(data.user);
+      setIsSignedin(true);
+    });
+  };
+
+  const handleFacebookClick = () => {
+    signInWithRedirect(auth, provider_facebook).then((data) => {
+      setSignupInfo(data.user);
+      setIsSignedin(true);
+    })
   };
   
   useEffect(() => {
@@ -221,7 +241,7 @@ export default function Signup() {
                 <h6>OR</h6>
               </div>
               <div className="auth-provider">
-                <button className="auth-provider-button provider-facebook">
+                <button className="auth-provider-button provider-facebook"  onClick={() => handleFacebookClick()}>
                   <span className="anticon">
                     <svg
                       viewBox="64 64 896 896"
@@ -239,7 +259,7 @@ export default function Signup() {
                 </button>
                 <button
                   className="auth-provider-button provider-google"
-                  onClick={() => googleHandle()}
+                  onClick={() => handleGoogleClick()}
                 >
                   <span className="anticon">
                     <svg
@@ -258,7 +278,7 @@ export default function Signup() {
                 </button>
                 <button
                   className="auth-provider-button provider-github"
-                  onClick={() => githubHandle()}
+                  onClick={() => handleGithubClick()}
                 >
                   <span className="anticon">
                     <svg
