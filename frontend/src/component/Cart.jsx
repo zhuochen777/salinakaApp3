@@ -16,6 +16,7 @@ export default function Cart(props) {
   const cartList = useSelector((state) => state.shop.cartList);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [totalVal, setTotalVal] = useState(0);
 
   const closeCartHandle = () => {
     props.closeCartHandle();
@@ -32,16 +33,16 @@ export default function Cart(props) {
     dispatch(setRemoveCartItem(item));
   };
 
-  const [totalVal, setTotalVal] = useState(0);
+  const clearCartHandle = () => {
+    dispatch(setClearCart());
+  };
+  
   useEffect(() => {
     setTotalVal(
       cartList.reduce((pre, cur) => pre + cur.price * cur.quantity, 0)
     );
   }, [cartList]);
 
-  const clearCartHandle = () => {
-    dispatch(setClearCart());
-  };
   return (
     <div>
       <div className="cart-top">

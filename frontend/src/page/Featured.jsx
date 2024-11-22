@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { setproductDetail } from '../store';
 import Product from '../component/Product';
+import useTitle from '../component/useTitle';
 
 export default function Featured() {
     const productList = useSelector((state) => state.shop.productList);
@@ -14,6 +15,8 @@ export default function Featured() {
       navigate(`/detail/${item.id}`)
       dispatch(setproductDetail(item))
     }
+
+  useTitle("Featured Products")
   return (
     <>
     <Nav/>

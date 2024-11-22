@@ -32,35 +32,93 @@ export default function Detail() {
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
   const [open, setOpen] = useState(false);
+  const [updatedProduct, setUpdatedProduct] = useState(productDetail);
+  const [showWarning, setShowWarning] = useState(false);
 
   const getDetailHandle = (item) => {
     navigate(`/detail/${item.id}`);
     dispatch(setproductDetail(item));
   };
-
   const goShopHandle = () => {
     navigate("/shop");
   };
 
   const editSizeHandle = (size) => {
+    console.log("48????", size);
+
     setSize(size.target.value);
   };
   const editColorHandle = (index) => {
     setColor(productDetail.color[index]);
   };
 
-  const addToCartHandle = () => {
-    const updatedProduct = {
+  const updateHandle = () => {
+    setUpdatedProduct({
       ...productDetail,
       size: size,
-      selectedColor: color, //选择的颜色与颜色数列分开，以免颜色出问题
+      selectedColor: color,
       isInCart: true,
+    });
+  };
+
+  useEffect(() => {
+    console.log("use effect updated Product", updatedProduct);
+
+    updateHandle();
+  }, [updatedProduct]);
+
+  const addToCartHandle = () => {
+    updateHandle();
+
+    console.log(updatedProduct);
+
+    const handleSelectedColorValidation = () => {
+      console.log("color", updatedProduct);
+
+      if (!updatedProduct.selectedColor) {
+        setShowWarning(true);
+        return false;
+      }
+
+      return true;
     };
-    dispatch(setproductDetail(updatedProduct));
-    dispatch(setCartList(updatedProduct));
-    dispatch(setShopList(updatedProduct));
-    dispatch(setProductList(updatedProduct));
-    setOpen(true);
+
+    const handleSelectedSizeValidation = () => {
+      console.log("size", updatedProduct);
+      if (!updatedProduct.size) {
+        setShowWarning(true);
+        return false;
+      }
+
+      return true;
+    };
+
+    // if (handleSelectedColorValidation() && handleSelectedSizeValidation()) {
+    if (handleSelectedSizeValidation() && handleSelectedColorValidation()) {
+      console.log("yes");
+      dispatch(setproductDetail(updatedProduct));
+      dispatch(setCartList(updatedProduct));
+      dispatch(setShopList(updatedProduct));
+      dispatch(setProductList(updatedProduct));
+      setOpen(true);
+    } else {
+      console.log("no");
+    }
+
+    // if (handleSelectedSizeValidation()) {
+    //   if (handleSelectedColorValidation()) {
+    //     console.log("yes");
+    //     dispatch(setproductDetail(updatedProduct));
+    //     dispatch(setCartList(updatedProduct));
+    //     dispatch(setShopList(updatedProduct));
+    //     dispatch(setProductList(updatedProduct));
+    //     setOpen(true);
+    //   } else {
+    //     console.log("no color");
+    //   }
+    // } else {
+    //   console.log("no size");
+    // }
   };
 
   const handleClose = () => {
@@ -111,6 +169,7 @@ export default function Detail() {
               <span>{productDetail.summary}</span>
               <h1>{productDetail.name}</h1>
               <p>{productDetail.description}</p>
+              {showWarning ? <p>Please select size and color</p> : <></>}
               <div>Lens Width and Frame Size</div>
               <div className="size-select">
                 <FormControl fullWidth>
@@ -170,7 +229,7 @@ export default function Detail() {
             </div>
           </div>
         </div>
-        <div className="display">
+        <div className="display" style={{ marginBottom: "70px" }}>
           <div className="display-header">
             <h1>Recommended Products</h1>
             <a href="/recommended" className="featured-link">

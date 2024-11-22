@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setproductDetail } from "../store";
 import "../css/Shop.css";
+import useTitle from "../component/useTitle";
 
 export default function Shop() {
   const shopList = useSelector((state) => state.shop.shopList);
@@ -15,6 +16,8 @@ export default function Shop() {
     navigate(`/detail/${item.id}`);
     dispatch(setproductDetail(item));
   };
+
+  useTitle("Shop")
   return (
     <>
       <Nav />

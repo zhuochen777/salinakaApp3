@@ -4,22 +4,23 @@ import routers from "./router";
 import { useRoutes } from "react-router-dom";
 
 export const isSignedinContext = createContext();
+export const tabContext = createContext();
 
 function App() {
   let url = process.env.REACT_APP_baseURL;
   const element = useRoutes(routers);
   const [isSignedin, setIsSignedin] = useState(false);
   const [signupInfo, setSignupInfo] = useState(null);
+  const [tab, setTab] = useState("home")
 
-  
-  console.log(signupInfo);
-  
   return (
     <>
       <isSignedinContext.Provider
         value={{ isSignedin, setIsSignedin, signupInfo, setSignupInfo }}
       >
-        {element}
+        <tabContext.Provider value={{ tab, setTab }}>
+          {element}
+        </tabContext.Provider>
       </isSignedinContext.Provider>
     </>
   );

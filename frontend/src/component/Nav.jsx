@@ -7,16 +7,18 @@ import { Drawer } from "@mui/material";
 import Cart from "./Cart.jsx";
 import { Badge } from "@mui/material";
 import { useSelector } from "react-redux";
-import { isSignedinContext } from "../App.js";
+import { isSignedinContext, tabContext } from "../App.js";
 
 export default function Nav() {
   let navigate = useNavigate();
   let userDropdownRef = useRef();
   const { isSignedin, setIsSignedin, signupInfo, setSignupInfo } =
     useContext(isSignedinContext);
+  const { tab, setTab } = useContext(tabContext);
 
   const [open, setOpen] = useState(false);
   const [navUserOpen, setNavUserOpen] = useState(false);
+  const [navFix, setNavFix] = useState(false);
 
   const toggleDrawer = (flag) => {
     setOpen(flag);
@@ -32,13 +34,26 @@ export default function Nav() {
     setNavUserOpen(!navUserOpen);
   };
 
-
   const signOutHandle = () => {
     localStorage.clear();
     setIsSignedin(false);
     setSignupInfo(null);
     navigate("/signin");
   };
+
+  const toggleTab = (tab) => {
+    setTab(tab);
+  };
+
+  const handleNavFix = () => {
+    if (window.scrollY >= 70) {
+      setNavFix(true);
+    } else {
+      setNavFix(false);
+    }
+  };
+
+  window.addEventListener("scroll", handleNavFix);
 
   //handle user info toogle, when click user avatar, info dropdown shows, then click outside of dropdown, dropdown closes
   useEffect(() => {
@@ -59,7 +74,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="navbar">
+      <nav className={navFix ? "navbar is-nav-scrolled" : "navbar"}>
         <Link to="/">
           <img
             src="https://salinaka-ecommerce.web.app/images/logo-full.059e10fa5fedbfb65165e7565ed3936f.png"
@@ -67,17 +82,34 @@ export default function Nav() {
           />
         </Link>
         <ul className="nav-option">
-          <li>
-            <Link to="/">Home</Link>
+          <li onClick={() => toggleTab("home")}>
+            <Link to="/" className={tab === "home" ? "tab selected" : "tab"}>
+              Home
+            </Link>
           </li>
-          <li>
-            <Link to="/shop">Shop</Link>
+          <li onClick={() => toggleTab("shop")}>
+            <Link
+              to="/shop"
+              className={tab === "shop" ? "tab selected" : "tab"}
+            >
+              Shop
+            </Link>
           </li>
-          <li>
-            <Link to="/featured">Featured</Link>
+          <li onClick={() => toggleTab("featured")}>
+            <Link
+              to="/featured"
+              className={tab === "featured" ? "tab selected" : "tab"}
+            >
+              Featured
+            </Link>
           </li>
-          <li>
-            <Link to="/recommended">Recommended</Link>
+          <li onClick={() => toggleTab("recommended")}>
+            <Link
+              to="/recommended"
+              className={tab === "recommended" ? "tab selected" : "tab"}
+            >
+              Recommended
+            </Link>
           </li>
         </ul>
         <div className="searchbar">
@@ -114,7 +146,7 @@ export default function Nav() {
               <h5 className="user-name">
                 {signupInfo.fullname
                   ? signupInfo.fullname
-                  : signupInfo.displayName} 
+                  : signupInfo.displayName}
               </h5>
               <div className="user-nav-img-wrapper">
                 <img
