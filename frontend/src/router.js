@@ -6,6 +6,8 @@ import Recommended from "./page/Recommended";
 import Signup from "./page/Signup";
 import Signin from "./page/Signin";
 import Account from "./page/Account";
+import CheckoutStep1 from "./page/CheckoutStep1";
+import CheckoutStep2 from "./page/CheckoutStep2";
 
 let routers = [
   { path: "/", element: <Home /> },
@@ -16,6 +18,8 @@ let routers = [
   { path: "/signup", element: <Signup /> },
   { path: "/signin", element: <Signin /> },
   { path: "/account", element: <Account /> },
+  { path: "/checkout/step1", element: <CheckoutStep1 /> },
+  { path: "/checkout/step2", element: <CheckoutStep2 /> },
 ];
 
 export default routers;

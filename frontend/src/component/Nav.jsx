@@ -46,7 +46,7 @@ export default function Nav() {
   };
 
   const handleNavFix = () => {
-    if (window.scrollY >= 70) {
+    if (window.scrollY >= 100) {
       setNavFix(true);
     } else {
       setNavFix(false);
@@ -220,7 +220,7 @@ export default function Nav() {
         </ul>
       </nav>
       <Drawer open={open} onClose={() => toggleDrawer(false)} anchor="right">
-        <div style={{ width: "600px", padding: "10px" }}>
+        <div style={{ width: "600px", padding: "10px", height:"100%" }}>
           <Cart closeCartHandle={closeCartHandle} />
         </div>
       </Drawer>

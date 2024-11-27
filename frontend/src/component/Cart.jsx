@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -11,12 +11,30 @@ import {
   SubQuantityToCart,
 } from "../store";
 import Button from "@mui/material/Button";
+import { isSignedinContext } from "../App.js";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function Cart(props) {
   const cartList = useSelector((state) => state.shop.cartList);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [totalVal, setTotalVal] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+  const { isSignedin, setIsSignedin, signupInfo, setSignupInfo } =
+    useContext(isSignedinContext);
 
   const closeCartHandle = () => {
     props.closeCartHandle();
@@ -36,7 +54,25 @@ export default function Cart(props) {
   const clearCartHandle = () => {
     dispatch(setClearCart());
   };
-  
+
+  const handleModalOpen = () => setModalOpen(true);
+
+  const handleModalClose = () => setModalOpen(false);
+
+  const checkoutHandle = () => {
+    if (cartList.length != 0 && isSignedin) {
+      navigate("/checkout/step1");
+    } else {
+      handleModalOpen();
+    }
+  };
+
+  const onSignInClick = () => {
+    handleModalClose();
+    closeCartHandle();
+    navigate("/signin");
+  };
+
   useEffect(() => {
     setTotalVal(
       cartList.reduce((pre, cur) => pre + cur.price * cur.quantity, 0)
@@ -44,71 +80,120 @@ export default function Cart(props) {
   }, [cartList]);
 
   return (
-    <div>
-      <div className="cart-top">
-        <div className="title">
-          <h2>My Basket</h2>
-          <p>({cartList.length} item)</p>
+    <div style={{ height: "100%" }}>
+      <div className="cart-wrapper">
+        <div className="cart-top">
+          <div className="title">
+            <h2>My Basket</h2>
+            <p>({cartList.length} item)</p>
+          </div>
+          <div className="cart-btn-top">
+            <Button variant="outlined" onClick={closeCartHandle}>
+              Close
+            </Button>
+            <Button variant="outlined" onClick={clearCartHandle}>
+              Clear Basket
+            </Button>
+          </div>
         </div>
-        <div className="cart-btn-top">
-          <Button variant="outlined" onClick={closeCartHandle}>
-            Close
-          </Button>
-          <Button variant="outlined" onClick={clearCartHandle}>
-            Clear Basket
-          </Button>
-        </div>
-      </div>
-      <div className="all-cart-items">
-        {cartList.map((item) => (
-          <div key={item.id} className="cart-item">
-            <div className="cart-item-btn">
-              <button className="add-btn" onClick={() => addHandle(item)}>
-                +
-              </button>
-              <button className="sub-btn" onClick={() => subHandle(item)}>
-                -
-              </button>
+        <div className="all-cart-items">
+          {cartList.length <= 0 && (
+            <div className="basket-empty">
+              <h5 className="basket-empty-msg">Your basket is empty</h5>
             </div>
-            <div>
-              <img src={item.srcImg} alt="img" style={{ width: "100px" }} />
-            </div>
-            <div className="cart-item-desc">
-              <h4>{item.name}</h4>
-              <div className="cart-item-detail">
-                <span className="quantity">Quantity:&nbsp;{item.quantity}</span>
-                <span className="size">Size:&nbsp;{item.size}</span>
-                <div className="color">
-                  <span>Color: </span>
-                  <div
-                    style={{
-                      backgroundColor: item.selectedColor,
-                      width: "20px",
-                      height: "20px",
-                      borderRadius: "50%",
-                      display: "inline-block",
-                      marginLeft: "10px",
-                    }}
-                  ></div>
+          )}
+          {cartList.map((item) => (
+            <div key={item.id} className="cart-item">
+              <div className="cart-item-btn">
+                <button className="add-btn" onClick={() => addHandle(item)}>
+                  +
+                </button>
+                <button className="sub-btn" onClick={() => subHandle(item)}>
+                  -
+                </button>
+              </div>
+              <div>
+                <img src={item.srcImg} alt="img" style={{ width: "100px" }} />
+              </div>
+              <div className="cart-item-desc">
+                <h4>{item.name}</h4>
+                <div className="cart-item-detail">
+                  <span className="quantity">
+                    Quantity:&nbsp;{item.quantity}
+                  </span>
+                  <span className="size">Size:&nbsp;{item.size}</span>
+                  <div className="color">
+                    <span>Color: </span>
+                    <div
+                      style={{
+                        backgroundColor: item.selectedColor,
+                        width: "20px",
+                        height: "20px",
+                        borderRadius: "50%",
+                        display: "inline-block",
+                        marginLeft: "10px",
+                      }}
+                    ></div>
+                  </div>
                 </div>
               </div>
+              <p>${item.price * item.quantity}</p>
+              <button className="close-btn" onClick={() => removeHandle(item)}>
+                X
+              </button>
             </div>
-            <p>${item.price * item.quantity}</p>
-            <button className="close-btn" onClick={() => removeHandle(item)}>
-              X
-            </button>
-          </div>
-        ))}
-      </div>
-      <hr />
-      <div className="cart-bottom">
-        <div className="total">
-          <div className="total-title">Subtotal Amout:</div>
-          <h2>${totalVal}</h2>
+          ))}
         </div>
-        <Button variant="outlined" className="checkout-btn" onClick={clearCartHandle}>
-          Clear Basket
-        </Button>
+        <hr />
+        <div className="cart-bottom">
+          <div className="total">
+            <div className="total-title">Subtotal Amout:</div>
+            <h2>${totalVal}</h2>
+          </div>
+          {cartList.length === 0 ? (
+            <Button variant="contained" disabled>
+              Check Out
+            </Button>
+          ) : (
+            <Button
+              variant="outlined"
+              className="checkout-btn"
+              onClick={checkoutHandle}
+            >
+              Check Out
+            </Button>
+          )}
+        </div>
+        <Modal
+          open={modalOpen}
+          onClose={handleModalClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <p className="text-center">
+              You must sign in to continue checking out
+            </p>
+            <br />
+            <div className="d-flex-center">
+              <button
+                className="button-close"
+                onClick={handleModalClose}
+                type="button"
+              >
+                Continue shopping
+              </button>
+              &nbsp;
+              <button
+                className="button-signin"
+                onClick={onSignInClick}
+                type="button"
+              >
+                Sign in to checkout
+              </button>
+            </div>
+          </Box>
+        </Modal>
       </div>
     </div>
   );

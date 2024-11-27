@@ -19,6 +19,9 @@ main {
 .product-modal-details {
     width: 50%;
     padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .button-link {
@@ -103,3 +106,32 @@ main {
 .img {
     width: 100%;
 }
+
+.summary {
+    color: #818181;
+    font-size: 12px;
+}
+
+.prod-name {
+    color: #1a1a1a;
+    font-size: 32px;
+    margin-top: 0;
+}
+
+.desc{
+    color: #4a4a4a;
+    font-size: 12px;
+}
+
+.dividor{
+    width: 100%;
+    height: 1px;
+    background: #f1f1f1;
+}
+
+.text-subtitle{
+    color: #818181;
+    font-size: 12px;
+}
+
+

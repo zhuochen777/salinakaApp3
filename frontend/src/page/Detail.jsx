@@ -62,19 +62,13 @@ export default function Detail() {
   };
 
   useEffect(() => {
-    console.log("use effect updated Product", updatedProduct);
-
     updateHandle();
   }, [updatedProduct]);
 
   const addToCartHandle = () => {
     updateHandle();
 
-    console.log(updatedProduct);
-
     const handleSelectedColorValidation = () => {
-      console.log("color", updatedProduct);
-
       if (!updatedProduct.selectedColor) {
         setShowWarning(true);
         return false;
@@ -84,7 +78,6 @@ export default function Detail() {
     };
 
     const handleSelectedSizeValidation = () => {
-      console.log("size", updatedProduct);
       if (!updatedProduct.size) {
         setShowWarning(true);
         return false;
@@ -93,32 +86,14 @@ export default function Detail() {
       return true;
     };
 
-    // if (handleSelectedColorValidation() && handleSelectedSizeValidation()) {
     if (handleSelectedSizeValidation() && handleSelectedColorValidation()) {
-      console.log("yes");
       dispatch(setproductDetail(updatedProduct));
       dispatch(setCartList(updatedProduct));
       dispatch(setShopList(updatedProduct));
       dispatch(setProductList(updatedProduct));
       setOpen(true);
-    } else {
-      console.log("no");
+      setShowWarning(false);
     }
-
-    // if (handleSelectedSizeValidation()) {
-    //   if (handleSelectedColorValidation()) {
-    //     console.log("yes");
-    //     dispatch(setproductDetail(updatedProduct));
-    //     dispatch(setCartList(updatedProduct));
-    //     dispatch(setShopList(updatedProduct));
-    //     dispatch(setProductList(updatedProduct));
-    //     setOpen(true);
-    //   } else {
-    //     console.log("no color");
-    //   }
-    // } else {
-    //   console.log("no size");
-    // }
   };
 
   const handleClose = () => {
@@ -166,11 +141,23 @@ export default function Detail() {
             </div>
             <div className="product-modal-details">
               <br />
-              <span>{productDetail.summary}</span>
-              <h1>{productDetail.name}</h1>
-              <p>{productDetail.description}</p>
-              {showWarning ? <p>Please select size and color</p> : <></>}
-              <div>Lens Width and Frame Size</div>
+              <span className="summary">{productDetail.summary}</span>
+              <h1 className="prod-name">{productDetail.name}</h1>
+              <span className="desc">{productDetail.description}</span>
+              <br />
+              <div className="dividor"></div>
+              <br />
+              {/* <span className={showWarning ? "warning active" : "warning"}>
+                Please select size and color
+              </span> */}
+              {showWarning ? (
+                <span style={{ color: "red" }}>
+                  Please select size and color.
+                </span>
+              ) : (
+                <span style={{ color: "white" }}>placeholder</span>
+              )}
+              <div className="text-subtitle">Lens Width and Frame Size</div>
               <div className="size-select">
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">
@@ -189,7 +176,7 @@ export default function Detail() {
                   </Select>
                 </FormControl>
               </div>
-              <div>Choose Color</div>
+              <div className="text-subtitle">Choose Color</div>
               <ul className="color-list">
                 {productDetail.color.map((item, index) => (
                   <li
