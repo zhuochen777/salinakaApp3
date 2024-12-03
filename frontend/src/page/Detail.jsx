@@ -44,8 +44,6 @@ export default function Detail() {
   };
 
   const editSizeHandle = (size) => {
-    console.log("48????", size);
-
     setSize(size.target.value);
   };
   const editColorHandle = (index) => {
@@ -147,11 +145,8 @@ export default function Detail() {
               <br />
               <div className="dividor"></div>
               <br />
-              {/* <span className={showWarning ? "warning active" : "warning"}>
-                Please select size and color
-              </span> */}
               {showWarning ? (
-                <span style={{ color: "red" }}>
+                <span style={{ color: "red", fontSize:"16px", fontWeight:"500" }}>
                   Please select size and color.
                 </span>
               ) : (
@@ -160,14 +155,14 @@ export default function Detail() {
               <div className="text-subtitle">Lens Width and Frame Size</div>
               <div className="size-select">
                 <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    --Select Size--
-                  </InputLabel>
+                  {/* <InputLabel id="demo-simple-select-label">
+                    test
+                  </InputLabel> */}
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={size}
-                    label="size"
+                    // label="size"
                     onChange={editSizeHandle}
                   >
                     <MenuItem value={28}>28mm</MenuItem>

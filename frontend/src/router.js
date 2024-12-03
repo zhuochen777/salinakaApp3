@@ -8,6 +8,7 @@ import Signin from "./page/Signin";
 import Account from "./page/Account";
 import CheckoutStep1 from "./page/CheckoutStep1";
 import CheckoutStep2 from "./page/CheckoutStep2";
+import CheckoutStep3 from "./page/CheckoutStep3";
 
 let routers = [
   { path: "/", element: <Home /> },
@@ -20,6 +21,7 @@ let routers = [
   { path: "/account", element: <Account /> },
   { path: "/checkout/step1", element: <CheckoutStep1 /> },
   { path: "/checkout/step2", element: <CheckoutStep2 /> },
+  { path: "/checkout/step3", element: <CheckoutStep3 /> },
 ];
 
 export default routers;

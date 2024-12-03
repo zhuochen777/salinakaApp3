@@ -138,14 +138,14 @@ export default function Signup() {
     signInWithPopup(auth, provider_google).then((data) => {
       setSignupInfo(data.user);
       setIsSignedin(true);
-    }).catch((error)=>alert(error.message));;
+    }).catch((error)=>alert(error.message));
   };
 
   const handleGithubClick = () => {
     signInWithPopup(auth, provider_github).then((data) => {
       setSignupInfo(data.user);
       setIsSignedin(true);
-    }).catch((error)=>alert(error.message));;
+    }).catch((error)=>alert(error.message));
   };
 
   const handleFacebookClick = () => {
@@ -172,6 +172,9 @@ export default function Signup() {
     setEmailLabel("* Email");
     setPasswordLabel("* Password");
   }, []);
+
+  console.log(signupInfo);
+  
 
   return (
     <>

@@ -93,7 +93,7 @@ export default function CheckoutStep1() {
                     </div>
                   </div>
                 </div>
-                <p>${item.price * item.quantity}</p>
+                <p>${item.price * item.quantity}.00</p>
                 <button
                   className="close-btn"
                   onClick={() => removeHandle(item)}
@@ -106,7 +106,7 @@ export default function CheckoutStep1() {
           <br />
           <div className="basket-total">
             <p className="basket-total-title">Subtotal:</p>
-            <h2 className="basket-total-amount">${totalVal}</h2>
+            <h2 className="basket-total-amount">${totalVal}.00</h2>
           </div>
           <br />
           <div className="checkout-shipping-action">

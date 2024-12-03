@@ -1,0 +1,156 @@
+.checkout-step-2 {
+  width: 700px;
+  margin: auto;
+}
+
+.form-row1,
+.form-row2 {
+  display: flex;
+}
+
+.form-row1-left,
+.form-row1-right,
+.form-row2-left,
+.form-row2-right {
+  width: 100%;
+}
+
+.form-row1-left {
+  margin: 0 12px 0 0;
+}
+
+.form-row1-right {
+  margin: 0 0 0 12px;
+}
+.form-row2-left {
+  margin: 12px 12px 12px 0;
+}
+.form-row2-right {
+  margin: 12px 0 12px 12px;
+}
+
+.shippinginfo {
+  padding: 10px 12px;
+  color: #696868;
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
+}
+.shippinginfowarning {
+  padding: 10px 12px;
+  color: red;
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
+}
+
+.shippingoption_title {
+  padding: 10px 12px;
+  color: #696868;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.shippingoption_cost {
+  padding: 16px;
+  border: 1px solid #e1e1e1;
+  background: #f1f1f1;
+}
+
+.shippingcostBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  padding: 12px 0;
+}
+.shippingcostBar:hover {
+  cursor: pointer;
+}
+
+.isshipmentcost {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 240px;
+}
+
+.circle {
+  height: 25px;
+  width: 25px;
+  background-color: #fff;
+  border: 2px solid #c5c5c5;
+  border-radius: 50%;
+}
+
+.shippingoption_cost .css-i4bv87-MuiSvgIcon-root {
+  color: lightgrey;
+}
+
+.shipping_text {
+  font-size: 13px;
+}
+
+.text-subtitle {
+  color: #818181;
+}
+
+.shippingcost {
+  font-weight: bold;
+}
+
+.shipping_internationalcost {
+  align-items: center;
+  display: flex;
+  height: 30px;
+  justify-content: flex-end;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.shipping_internationalcost_title {
+  color: #4a4a4a;
+  font-size: 12px;
+  padding-right: 35px;
+}
+.shipping_internationalcost_title_total {
+  color: #4a4a4a;
+  font-size: 12px;
+  padding-right: 35px;
+}
+
+.shipping_internationalcost_cost {
+  color: #818181;
+  font-size: 15px;
+  width: 100px;
+  font-weight: bold;
+  text-align: end;
+}
+
+.shipping_currentsubtotal {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.shipping_total {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.finalprice {
+  color: #1a1a1a;
+  font-size: 22px;
+  font-weight: 700;
+  width: 100px;
+  text-align: end;
+}
+
+.checkout-shipping-action {
+  padding-top: 20px;
+}
