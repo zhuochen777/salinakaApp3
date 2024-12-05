@@ -156,7 +156,7 @@ const scrollHandle = ()=>{
             <button onClick={() => toggleDrawer(true)} className="cart-icon" disabled={cartDisabledpaths.includes(pathname)}>
               <div className="badge">
                 <span>
-                  <Badge badgeContent={cartList.length} color="primary">
+                  <Badge badgeContent={cartList.length} color="primary" style={{color: "red"}}>
                     <ShoppingBagOutlinedIcon />
                   </Badge>
                 </span>
