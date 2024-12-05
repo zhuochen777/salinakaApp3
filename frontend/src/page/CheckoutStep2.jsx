@@ -277,7 +277,7 @@ export default function CheckoutStep2() {
                           border: " 2px solid black",
                         }}
                       >
-                        <CheckIcon />
+                        <CheckIcon style={{color:"white"}}/>
                       </div>
                     )}
                     <div className="shipping_text">
