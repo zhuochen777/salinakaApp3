@@ -146,7 +146,7 @@ export default function CheckoutStep2() {
       <div className="content">
         <StepTracker current={2} />
         <div className="checkout-step-2">
-          <h3 className="text-center">Shipping Details</h3>
+          <h3 className="text-center shippingDetails">Shipping Details</h3>
           <div className="checkout-shipping-wrapper">
             <div className="checkout-shipping-form">
               <div className="form-row1">
@@ -251,7 +251,7 @@ export default function CheckoutStep2() {
                       }
                     }}
                   /> */}
-                  
+
                   <PhoneInput
                     country={"us"}
                     value={shippingDetails.mobile}
