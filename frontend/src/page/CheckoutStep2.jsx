@@ -10,6 +10,8 @@ import { isSignedinContext } from "../App.js";
 import { shippingContext } from "../App.js";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 export default function CheckoutStep2() {
   const cartList = useSelector((state) => state.shop.cartList);
@@ -53,7 +55,7 @@ export default function CheckoutStep2() {
   const nextHandle = () => {
     if (
       handleNameValidate() &&
-      handleNameValidate() &&
+      handleEmailValidate() &&
       handleAddressValidate() &&
       handleMobileValidate()
     ) {
@@ -74,6 +76,7 @@ export default function CheckoutStep2() {
     }
     return true;
   };
+
   const handleEmailValidate = () => {
     const { email } = shippingDetails;
     if (email.length === 0) {
@@ -232,7 +235,7 @@ export default function CheckoutStep2() {
                   >
                     {mobileLabel}
                   </label>
-                  <TextField
+                  {/* <TextField
                     id="outlined-size-small"
                     defaultValue=""
                     size="medium"
@@ -247,6 +250,12 @@ export default function CheckoutStep2() {
                         event.preventDefault();
                       }
                     }}
+                  /> */}
+                  
+                  <PhoneInput
+                    country={"us"}
+                    value={shippingDetails.mobile}
+                    onChange={(phone) => setShippingDetails({ ...shippingDetails, mobile:phone })}
                   />
                 </div>
               </div>

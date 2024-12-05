@@ -1,11 +1,11 @@
 import React, { useContext, useRef } from "react";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined.js";
 import "../css/Nav.css";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Drawer } from "@mui/material";
+import { Drawer, Badge } from "@mui/material";
 import Cart from "./Cart.jsx";
-import { Badge } from "@mui/material";
+// import { Badge } from "@mui/material";
 import { useSelector } from "react-redux";
 import { isSignedinContext, tabContext } from "../App.js";
 import PersonIcon from "@mui/icons-material/Person";
@@ -20,7 +20,10 @@ export default function Nav() {
 
   const [open, setOpen] = useState(false);
   const [navUserOpen, setNavUserOpen] = useState(false);
-  const [navFix, setNavFix] = useState(false);
+  // const [navFix, setNavFix] = useState(false);
+
+  const navbarRef = useRef(null)
+  const { pathname } = useLocation();
 
   const toggleDrawer = (flag) => {
     setOpen(flag);
@@ -47,15 +50,33 @@ export default function Nav() {
     setTab(tab);
   };
 
-  const handleNavFix = () => {
-    if (window.scrollY >= 100) {
-      setNavFix(true);
-    } else {
-      setNavFix(false);
-    }
-  };
+  // const handleNavFix = () => {
+  //   if (window.scrollY >= 70) {
+  //     setNavFix(true);
+  //   } else {
+  //     setNavFix(false);
+  //   }
+  // };
 
-  window.addEventListener("scroll", handleNavFix);
+  // useEffect(()=>{
+  //   window.addEventListener("scroll", handleNavFix);
+  //   return ()=>window.removeEventListener("scroll", handleNavFix);
+  // })
+const scrollHandle = ()=>{
+  if (navbarRef.current){
+    if (window.pageYOffset >= 20) {
+      navbarRef.current.classList.add("is-nav-scrolled")
+    } else {
+      navbarRef.current.classList.remove("is-nav-scrolled")
+    }
+  }
+}
+
+  useEffect(()=>{
+    window.addEventListener("scroll", scrollHandle);
+
+    return ()=>window.removeEventListener("scroll", scrollHandle)
+  },[])
 
   //handle user info toogle, when click user avatar, info dropdown shows, then click outside of dropdown, dropdown closes
   useEffect(() => {
@@ -74,9 +95,18 @@ export default function Nav() {
     }
   });
 
+  const cartDisabledpaths = [
+    "/checkout/step1",
+    "/checkout/step2",
+    "/checkout/step3",
+    "/signin",
+    "/signup",
+  ]
+
   return (
     <>
-      <nav className={navFix ? "navbar is-nav-scrolled" : "navbar"}>
+      {/* <nav className={navFix ? "navbar is-nav-scrolled" : "navbar"}> */}
+      <nav className="navbar" ref={navbarRef}>
         <Link to="/">
           <img
             src="https://salinaka-ecommerce.web.app/images/logo-full.059e10fa5fedbfb65165e7565ed3936f.png"
@@ -123,7 +153,7 @@ export default function Nav() {
         </div>
         <ul className="navigation-menu">
           <li className="navigation-menu-item">
-            <button onClick={() => toggleDrawer(true)} className="cart-icon">
+            <button onClick={() => toggleDrawer(true)} className="cart-icon" disabled={cartDisabledpaths.includes(pathname)}>
               <div className="badge">
                 <span>
                   <Badge badgeContent={cartList.length} color="primary">

@@ -95,6 +95,14 @@
   background: #f2f2f2;
 }
 
+.cart-icon:disabled{
+  opacity: .5;
+}
+
+.cart-icon:disabled:hover{
+  cursor: not-allowed;
+}
+
 .css-zza0ns-MuiBadge-badge {
   background-color: red !important;
 }

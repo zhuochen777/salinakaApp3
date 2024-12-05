@@ -152,5 +152,10 @@
 }
 
 .checkout-shipping-action {
-  padding-top: 20px;
+  padding-top: 45px;
+}
+
+.form-control {
+  width: 100%;
+  height: 54px;
 }

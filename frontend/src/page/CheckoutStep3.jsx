@@ -14,6 +14,8 @@ import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { shippingContext } from "../App.js";
 import { useSelector } from "react-redux";
+import dayjs from "dayjs";
+import moment from "moment";
 
 export default function CheckoutStep3() {
   const { shippingCost, setShippingCost } = useContext(shippingContext);
@@ -21,6 +23,18 @@ export default function CheckoutStep3() {
   const navigate = useNavigate();
   const [selectedPayment, setSelectedPayment] = useState("credit");
   const [showWarning, setShowWarning] = useState(false);
+  const [paymentDetails, setPaymentDetails] = useState({
+    name: "",
+    number: "",
+    date: "",
+    ccv: "",
+  });
+  // const [dateValue, setDateValue] = useState(dayjs(new Date()));
+  const [dateValue, setDateValue] = useState(null);
+  const [nameLabel, setNameLabel] = useState("* Name on Card");
+  const [numberLabel, setNumberLabel] = useState("* Card Number");
+  const [dateLabel, setDateLabel] = useState("* Expiry Date");
+  const [ccvLabel, setCcvLabel] = useState("* CCV");
 
   const collapseSectionRef = useRef(null);
   const creditCheckboxRef = useRef(null);
@@ -49,6 +63,10 @@ export default function CheckoutStep3() {
   };
 
   const submitHandle = () => {
+    handleNameValidate();
+    handleNumberValidate();
+    handleDateValidate();
+    handleCcvValidate();
     setShowWarning(true);
   };
 
@@ -67,14 +85,99 @@ export default function CheckoutStep3() {
     initial_subtotalPrice
   );
 
-  const selectPaypal=()=>{
-    setSelectedPayment("paypal")
+  const selectPaypal = () => {
+    setSelectedPayment("paypal");
     setShowWarning(true);
-  }
+  };
 
   useEffect(() => {
     toggleCollapse();
   }, [selectedPayment]);
+
+  const changeHandle = (e) => {
+    setPaymentDetails({ ...paymentDetails, [e.target.name]: e.target.value });
+  };
+
+  const handleNewDate = (newDateValue) => {
+    setDateValue(newDateValue);
+    let formattedDate = moment(newDateValue).format("MM/DD/YYYY");
+    setPaymentDetails({ ...paymentDetails, date: formattedDate });
+  };
+
+  const handleNameValidate = () => {
+    const { name } = paymentDetails;
+    if (name.length === 0) {
+      setNameLabel("Name is required.");
+      return false;
+    } else if (name.length < 4) {
+      setNameLabel("Name should be at least 4 characters.");
+      return false;
+    } else {
+      setNameLabel("* Name on Card");
+    }
+    return true;
+  };
+
+  const handleNumberValidate = () => {
+    const { number } = paymentDetails;
+    if (number.length === 0) {
+      setNumberLabel("Card number is required.");
+      return false;
+    } else if (number.length < 13 || number.length > 19) {
+      setNumberLabel("Card number should be 13-19 digits long");
+    } else {
+      setNumberLabel("* Card Number");
+    }
+    return true;
+  };
+
+  const handleDateValidate = () => {
+    const { date } = paymentDetails;
+    if (date.length === 0) {
+      setDateLabel("Credit card expiry is required.");
+      return false;
+    } else {
+      setDateLabel("* Expiry Date");
+    }
+    return true;
+  };
+
+  const handleCcvValidate = () => {
+    const { ccv } = paymentDetails;
+    if (ccv.length === 0) {
+      setCcvLabel("CCV is required.");
+      return false;
+    } else if (ccv.length < 3 || ccv.length > 4) {
+      setCcvLabel("CCV length should be 3-4 digit");
+    } else {
+      setCcvLabel("* CCV");
+    }
+    return true;
+  };
+
+  useEffect(() => {
+    handleNameValidate();
+  }, [paymentDetails.name]);
+
+  useEffect(() => {
+    handleNumberValidate();
+  }, [paymentDetails.number]);
+
+  useEffect(() => {
+    handleDateValidate();
+  }, [paymentDetails.date]);
+
+  useEffect(() => {
+    handleCcvValidate();
+  }, [paymentDetails.ccv]);
+
+  //初始化label name的useEffect放在最下面
+  useEffect(() => {
+    setNameLabel("* Name on Card");
+    setNumberLabel("* Card Number");
+    setDateLabel("* Expiry Date");
+    setCcvLabel("* CCV");
+  }, []);
 
   return (
     <>
@@ -136,7 +239,15 @@ export default function CheckoutStep3() {
               <div className="checkout-field-section">
                 <div className="checkout-fieldset">
                   <div className="checkout-field-sub">
-                    <div className="label-input">* Name on Card</div>
+                    <label
+                      className={
+                        nameLabel === "* Name on Card"
+                          ? "paymentinfo"
+                          : "paymentinfowarning"
+                      }
+                    >
+                      {nameLabel}
+                    </label>
                     <TextField
                       id="outlined-size-small"
                       size="medium"
@@ -144,12 +255,21 @@ export default function CheckoutStep3() {
                         width: "100%",
                         height: "100%",
                       }}
-                      name="name-on-card"
+                      name="name"
                       inputRef={cardNameInputRef}
+                      onChange={(e) => changeHandle(e)}
                     />
                   </div>
                   <div className="checkout-field-sub">
-                    <div className="label-input">* Card Number</div>
+                    <label
+                      className={
+                        numberLabel === "* Card Number"
+                          ? "paymentinfo"
+                          : "paymentinfowarning"
+                      }
+                    >
+                      {numberLabel}
+                    </label>
                     <TextField
                       id="outlined-size-small"
                       size="medium"
@@ -157,13 +277,22 @@ export default function CheckoutStep3() {
                         width: "100%",
                         height: "100%",
                       }}
-                      name="card-number"
+                      name="number"
+                      onChange={(e) => changeHandle(e)}
                     />
                   </div>
                 </div>
                 <div className="checkout-fieldset">
                   <div className="checkout-field-sub">
-                    <div className="label-input">* Expiry Date</div>
+                    <label
+                      className={
+                        dateLabel === "* Expiry Date"
+                          ? "paymentinfo"
+                          : "paymentinfowarning"
+                      }
+                    >
+                      {dateLabel}
+                    </label>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DemoContainer components={["DatePicker"]}>
                         <DatePicker
@@ -171,12 +300,24 @@ export default function CheckoutStep3() {
                             width: "100%",
                             height: "100%",
                           }}
+                          value={dateValue}
+                          onChange={(newDateValue) =>
+                            handleNewDate(newDateValue)
+                          }
                         />
                       </DemoContainer>
                     </LocalizationProvider>
                   </div>
                   <div className="checkout-field-sub">
-                    <div className="label-input">* CCV</div>
+                    <label
+                      className={
+                        ccvLabel === "* CCV"
+                          ? "paymentinfo"
+                          : "paymentinfowarning"
+                      }
+                    >
+                      {ccvLabel}
+                    </label>
                     <TextField
                       id="outlined-size-small"
                       size="medium"
@@ -184,7 +325,8 @@ export default function CheckoutStep3() {
                         width: "100%",
                         height: "100%",
                       }}
-                      name="card-ccv"
+                      name="ccv"
+                      onChange={(e) => changeHandle(e)}
                     />
                   </div>
                 </div>
@@ -198,10 +340,7 @@ export default function CheckoutStep3() {
           >
             <div className="checkout-field">
               <div className="checkout-checkbox-field">
-                <label
-                  className="payment-desc"
-                  onClick={selectPaypal}
-                >
+                <label className="payment-desc" onClick={selectPaypal}>
                   <div
                     className={`checkbox ${
                       selectedPayment === "paypal" ? "payment-selected" : ""

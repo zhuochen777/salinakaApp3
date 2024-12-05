@@ -214,8 +214,8 @@ export default function Signin() {
                       viewBox="64 64 896 896"
                       focusable="false"
                       data-icon="facebook"
-                      width="1em"
-                      height="1em"
+                      width="20px"
+                      height="20px"
                       fill="currentColor"
                       aria-hidden="true"
                     >
@@ -233,8 +233,8 @@ export default function Signin() {
                       viewBox="64 64 896 896"
                       focusable="false"
                       data-icon="google"
-                      width="1em"
-                      height="1em"
+                      width="20px"
+                      height="20px"
                       fill="currentColor"
                       aria-hidden="true"
                     >
@@ -252,8 +252,8 @@ export default function Signin() {
                       viewBox="64 64 896 896"
                       focusable="false"
                       data-icon="github"
-                      width="1em"
-                      height="1em"
+                      width="20px"
+                      height="20px"
                       fill="currentColor"
                       aria-hidden="true"
                     >

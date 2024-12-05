@@ -3,168 +3,185 @@
   margin: auto;
 }
 
-.option-title{
-    padding: 12px;
-    font-size: 12px;
-    color: #4a4a4a;
-    font-weight: 500;
-    display: block;
+.option-title {
+  padding: 12px;
+  font-size: 12px;
+  color: #4a4a4a;
+  font-weight: 500;
+  display: block;
 }
 
-.checkout-fieldset-collapse{
-    display: flex;
-    flex-direction: column;
-    transition: all .5s ease;
-    opacity: .6;
-    overflow: hidden;
+.checkout-fieldset-collapse {
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s ease;
+  opacity: 0.6;
+  overflow: hidden;
 }
 
-.checkout-fieldset-collapse.is-selected-payment{
-    opacity: 1;
+.checkout-fieldset-collapse.is-selected-payment {
+  opacity: 1;
 }
 
-.checkout-checkbox-field{
-    display: flex;
-    padding: 16px;
-    border: 1px solid #e1e1e1;
-    background: #f1f1f1;
+.checkout-checkbox-field {
+  display: flex;
+  padding: 16px;
+  border: 1px solid #e1e1e1;
+  background: #f1f1f1;
 }
 
-.checkbox{
-    height: 25px;
-    width: 25px;
-    background-color: #fff;
-    border: 2px solid #c5c5c5;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-right: 5px;
-    transition: all .3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.checkbox {
+  height: 25px;
+  width: 25px;
+  background-color: #fff;
+  border: 2px solid #c5c5c5;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.checkbox.payment-selected{
-    border: 2px solid #000;
-    background: #000;
+.checkbox.payment-selected {
+  border: 2px solid #000;
+  background: #000;
 }
 
-.check-icon{
-    color: #c5c5c5;
+.check-icon {
+  color: #c5c5c5;
 }
 
-.check-icon.icon-selected{
-    color: #fff;
+.check-icon.icon-selected {
+  color: #fff;
 }
 
-.payment-desc{
-    display: flex;
-    align-items: center;
-    font-size: 15px;
-    font-weight: 500;
-    width: 100%;
-    cursor: pointer;
-    padding: 12px 0;
+.payment-desc {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  width: 100%;
+  cursor: pointer;
+  padding: 12px 0;
 }
 
-.label-left{
-    margin-left: 12px;
-    flex-grow: 1;
+.label-left {
+  margin-left: 12px;
+  flex-grow: 1;
 }
 
-.payment-type{
-    color: #1a1a1a;
-    margin: 0;
+.payment-type {
+  color: #1a1a1a;
+  margin: 0;
 }
 
-.text-subtitle{
-    color: #818181;
-    margin-top: 12px;
-    display: block;
+.text-subtitle {
+  color: #818181;
+  margin-top: 12px;
+  display: block;
 }
 
-.payment-img{
-    width: 48px;
-    height: 32px;
-    background: url("https://salinaka-ecommerce.web.app/images/creditcards.9024dc86450bbd2666b162083f5f91dd.png");
-    background-size: 300px 200px;
-    filter: grayscale(1);
-    border-radius: 2px;
+.payment-img {
+  width: 48px;
+  height: 32px;
+  background: url("https://salinaka-ecommerce.web.app/images/creditcards.9024dc86450bbd2666b162083f5f91dd.png");
+  background-size: 300px 200px;
+  filter: grayscale(1);
+  border-radius: 2px;
 }
 
 .payment-img-visa {
-    background-position: -55px -15px;
+  background-position: -55px -15px;
 }
 
 .payment-img-master {
-    background-position: 103px -15px;
+  background-position: 103px -15px;
 }
 
 .payment-img-paypal {
-    background-position: 103px 115px;
+  background-position: 103px 115px;
 }
 
 .payment-img-express {
-    background-position: -126px -15px;
+  background-position: -126px -15px;
 }
 
 .payment-img-maestro {
-    background-position: -55px 47px;
+  background-position: -55px 47px;
 }
 
 .payment-img-discover {
-    background-position: 175px 115px;
+  background-position: 175px 115px;
 }
 
-.label-right{
-    display: flex;
+.label-right {
+  display: flex;
 }
 
-.checkout-collapse-sub{
-    padding: 16px;
-    border: 1px solid #e1e1e1;
-    background: #fff;
+.checkout-collapse-sub {
+  padding: 16px;
+  border: 1px solid #e1e1e1;
+  background: #fff;
 }
 
-.accepted-cards{
-    padding: 12px;
-    text-align: center;
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
+.accepted-cards {
+  padding: 12px;
+  text-align: center;
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
 }
 
-.checkout-cards-accepted{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.checkout-cards-accepted {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.checkout-cards-accepted .payment-img{
-    margin: 0 2px;
+.checkout-cards-accepted .payment-img {
+  margin: 0 2px;
 }
 
-.checkout-fieldset{
-    display: flex;
-    align-items: center;
+.checkout-fieldset {
+  display: flex;
+  align-items: center;
 }
 
-.checkout-field-sub{
-    width: 100%;
-    margin: 0 12px 12px;
+.checkout-field-sub {
+  width: 100%;
+  margin: 0 12px 12px;
 }
 
-.label-input{
+/* .label-input{
     padding: 10px 12px;
     color: #696868;
     border: none;
     font-size: 12px;
     font-weight: 500;
+} */
+
+.paymentinfo {
+  padding: 10px 12px;
+  color: #696868;
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
 }
 
-.css-10o2lyd-MuiStack-root{
-    padding-top: 0 !important;
+.paymentinfowarning {
+  padding: 10px 12px;
+  color: red;
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
 }
 
+.css-10o2lyd-MuiStack-root {
+  padding-top: 0 !important;
+}
 
-
+.checkout-shipping-action {
+  padding-top: 45px;
+}
