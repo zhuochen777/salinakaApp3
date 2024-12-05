@@ -267,7 +267,7 @@ export default function CheckoutStep2() {
                   <div className="isshipmentcost">
                     {shippingCost === 0 ? (
                       <div className="circle">
-                        <CheckIcon />
+                        <CheckIcon style={{color:"grey"}}/>
                       </div>
                     ) : (
                       <div

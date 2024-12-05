@@ -63,11 +63,16 @@ export default function CheckoutStep3() {
   };
 
   const submitHandle = () => {
-    handleNameValidate();
-    handleNumberValidate();
-    handleDateValidate();
-    handleCcvValidate();
-    setShowWarning(true);
+    if (
+      handleNameValidate() &&
+      handleNumberValidate() &&
+      handleDateValidate() &&
+      handleCcvValidate()
+    ) {
+      setShowWarning(true);
+    } else {
+      setShowWarning(false);
+    }
   };
 
   const closeWarningHandle = () => {
