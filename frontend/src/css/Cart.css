@@ -41,7 +41,7 @@ h2 {
 .cart-item {
     display: flex;
     border: 1px solid #e1e1e1;
-    margin: 10px 0;
+    margin: 40px 0;
     justify-content: space-between;
     align-items: center;
     height: 90px;

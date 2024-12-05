@@ -59,7 +59,7 @@ export default function CheckoutStep1() {
           <br />
           <div className="checkout-items">
             {cartList.map((item) => (
-              <div key={item.id} className="cart-item">
+              <div key={item.id} className="cart-item" >
                 <div className="cart-item-btn">
                   <button className="add-btn" onClick={() => addHandle(item)}>
                     +
