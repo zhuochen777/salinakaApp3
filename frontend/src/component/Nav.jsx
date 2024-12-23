@@ -10,10 +10,13 @@ import { useSelector } from "react-redux";
 import { isSignedinContext, tabContext } from "../App.js";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
+import SearchBar from "./SearchBar.jsx";
+import FilterOptions from "./FilterOptions.jsx";
 
 export default function Nav() {
   let navigate = useNavigate();
   let userDropdownRef = useRef();
+  const location = useLocation();
   const { isSignedin, setIsSignedin, signupInfo, setSignupInfo } =
     useContext(isSignedinContext);
   const { tab, setTab } = useContext(tabContext);
@@ -22,7 +25,7 @@ export default function Nav() {
   const [navUserOpen, setNavUserOpen] = useState(false);
   // const [navFix, setNavFix] = useState(false);
 
-  const navbarRef = useRef(null)
+  const navbarRef = useRef(null);
   const { pathname } = useLocation();
 
   const toggleDrawer = (flag) => {
@@ -62,21 +65,21 @@ export default function Nav() {
   //   window.addEventListener("scroll", handleNavFix);
   //   return ()=>window.removeEventListener("scroll", handleNavFix);
   // })
-const scrollHandle = ()=>{
-  if (navbarRef.current){
-    if (window.pageYOffset >= 20) {
-      navbarRef.current.classList.add("is-nav-scrolled")
-    } else {
-      navbarRef.current.classList.remove("is-nav-scrolled")
+  const scrollHandle = () => {
+    if (navbarRef.current) {
+      if (window.pageYOffset >= 20) {
+        navbarRef.current.classList.add("is-nav-scrolled");
+      } else {
+        navbarRef.current.classList.remove("is-nav-scrolled");
+      }
     }
-  }
-}
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     window.addEventListener("scroll", scrollHandle);
 
-    return ()=>window.removeEventListener("scroll", scrollHandle)
-  },[])
+    return () => window.removeEventListener("scroll", scrollHandle);
+  }, []);
 
   //handle user info toogle, when click user avatar, info dropdown shows, then click outside of dropdown, dropdown closes
   useEffect(() => {
@@ -101,7 +104,7 @@ const scrollHandle = ()=>{
     "/checkout/step3",
     "/signin",
     "/signup",
-  ]
+  ];
 
   return (
     <>
@@ -144,16 +147,19 @@ const scrollHandle = ()=>{
             </Link>
           </li>
         </ul>
-        <div className="searchbar">
-          <input
-            className="search-input"
-            type="text"
-            placeholder="Search product..."
-          />
+        <div className="search-wrapper" style={{display:"flex"}}>
+          <div className="filter">
+            {location.pathname === "/shop" ? <FilterOptions /> : ""}
+          </div>
+          <SearchBar />
         </div>
         <ul className="navigation-menu">
           <li className="navigation-menu-item">
-            <button onClick={() => toggleDrawer(true)} className="cart-icon" disabled={cartDisabledpaths.includes(pathname)}>
+            <button
+              onClick={() => toggleDrawer(true)}
+              className="cart-icon"
+              disabled={cartDisabledpaths.includes(pathname)}
+            >
               <div className="badge">
                 <span>
                   <Badge badgeContent={cartList.length} color="primary">
@@ -166,10 +172,10 @@ const scrollHandle = ()=>{
           </li>
           {!isSignedin ? (
             <li className="navigation-action">
-              <Link to="/signup" style={{textDecoration:"none"}}>
+              <Link to="/signup" style={{ textDecoration: "none" }}>
                 <button className="button signup">Sign Up</button>
               </Link>
-              <Link to="/signin" style={{textDecoration:"none"}}>
+              <Link to="/signin" style={{ textDecoration: "none" }}>
                 <button className="button signin">Sign In</button>
               </Link>
             </li>

@@ -38,7 +38,11 @@ export default function Detail() {
   const getDetailHandle = (item) => {
     navigate(`/detail/${item.id}`);
     dispatch(setproductDetail(item));
+    setColor("")
+    setSize("")
+    setShowWarning(false)
   };
+
   const goShopHandle = () => {
     navigate("/shop");
   };
@@ -102,6 +106,11 @@ export default function Detail() {
     dispatch(setRemoveCartItem(item));
     setOpen(true);
   };
+
+  useEffect(()=>{
+    setColor("")
+    setSize("")
+  },[productDetail])
 
   return (
     <>

@@ -46,15 +46,16 @@
 .product-display {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     
 }
 
 .product-detail {
-    width: 375px;
+    width: 400px;
     height: 300px;
     border: 1px solid #e1e1e1;
     margin-bottom: 20px;
+    margin: 0 29px 20px;
 }
 
 .product-detail:hover {

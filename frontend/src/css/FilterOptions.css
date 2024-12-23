@@ -1,0 +1,16 @@
+.filter-btn{
+    height: 40px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: #f2f2f2;
+    color: #7d7d7d;
+    border: 1px solid #e1e1e1;
+}
+
+.filter-btn:hover{
+    background: #f9f9f9;
+    border: 1px solid #c5c5c5;
+}

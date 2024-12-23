@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "../css/Cart.css";
@@ -9,6 +9,7 @@ import {
   setRemoveCartItem,
   AddQuantityToCart,
   SubQuantityToCart,
+  setproductDetail,
 } from "../store";
 import Button from "@mui/material/Button";
 import { isSignedinContext } from "../App.js";
@@ -29,6 +30,7 @@ const style = {
 
 export default function Cart(props) {
   const cartList = useSelector((state) => state.shop.cartList);
+  const productDetail = useSelector((state) => state.shop.productDetail);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [totalVal, setTotalVal] = useState(0);
@@ -73,6 +75,16 @@ export default function Cart(props) {
     navigate("/signin");
   };
 
+  const checkProductHandle = (item) => {
+    navigate(`/detail/${item.id}`);
+
+    let itemNoSizeNoColor = { ...item, size: "", selectedColor: "" };
+    console.log(itemNoSizeNoColor);
+
+    dispatch(setproductDetail(itemNoSizeNoColor));
+    closeCartHandle();
+  };
+
   useEffect(() => {
     setTotalVal(
       cartList.reduce((pre, cur) => pre + cur.price * cur.quantity, 0)
@@ -88,12 +100,18 @@ export default function Cart(props) {
             <p>({cartList.length} item)</p>
           </div>
           <div className="cart-btn-top">
-            <Button variant="outlined" onClick={closeCartHandle}>
+            <Button className="close-btn" variant="outlined" onClick={closeCartHandle}>
               Close
             </Button>
-            <Button variant="outlined" onClick={clearCartHandle}>
-              Clear Basket
-            </Button>
+            {cartList.length === 0 ? (
+              <Button className="clear-btn disabled-btn" variant="outlined" disabled>
+                Clear Basket
+              </Button>
+            ) : (
+              <Button variant="outlined" onClick={clearCartHandle}>
+                Clear Basket
+              </Button>
+            )}
           </div>
         </div>
         <div className="all-cart-items">
@@ -108,7 +126,11 @@ export default function Cart(props) {
                 <button className="add-btn" onClick={() => addHandle(item)}>
                   +
                 </button>
-                <button className="sub-btn" onClick={() => subHandle(item)}>
+                <button
+                  className="sub-btn"
+                  onClick={() => subHandle(item)}
+                  disabled={item.quantity === 1}
+                >
                   -
                 </button>
               </div>
@@ -116,7 +138,12 @@ export default function Cart(props) {
                 <img src={item.srcImg} alt="img" style={{ width: "100px" }} />
               </div>
               <div className="cart-item-desc">
-                <h4>{item.name}</h4>
+                <span
+                  className="cart-item-desc-link"
+                  onClick={() => checkProductHandle(item)}
+                >
+                  <h4>{item.name}</h4>
+                </span>
                 <div className="cart-item-detail">
                   <span className="quantity">
                     Quantity:&nbsp;{item.quantity}
@@ -151,7 +178,7 @@ export default function Cart(props) {
             <h2>${totalVal}</h2>
           </div>
           {cartList.length === 0 ? (
-            <Button variant="contained" disabled>
+            <Button className="checkout-btn disabled-btn" variant="outlined" disabled>
               Check Out
             </Button>
           ) : (

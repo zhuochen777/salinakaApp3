@@ -1,167 +1,197 @@
-
-.cart-wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+.cart-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .cart-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .cart-top p {
-    display: inline-block;
-    padding: 0 10px;
-    font-size: 12px;
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 12px;
 }
 
 h2 {
-    font-size: 19px;
-    display: inline-block;
+  font-size: 19px;
+  display: inline-block;
 }
 
 .all-cart-items {
-    height: 100%;
+  height: 100%;
 }
 
-.basket-empty{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.basket-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .basket-empty-msg {
-    color: #818181;
+  color: #818181;
 }
 
-
 .cart-item {
-    display: flex;
-    border: 1px solid #e1e1e1;
-    margin: 40px 0;
-    justify-content: space-between;
-    align-items: center;
-    height: 90px;
+  display: flex;
+  border: 1px solid #e1e1e1;
+  margin: 40px 0;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
 }
 
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
-    font-size: 12px !important;
-    color: black !important;
-    border-color: #e1e1e1 !important;
+  font-size: 12px !important;
+  color: black !important;
+  border-color: #e1e1e1 !important;
 }
 
 .cart-item-btn {
-    height: 88px;
-    display: flex;
-    flex-direction: column;
-
+  height: 88px;
+  display: flex;
+  flex-direction: column;
 }
 
-.cart-item-btn button{
-    height: 50%;
-    width: 35px;
-    border: 1px solid #e1e1e1;
-    background-color: white;
-    color: #4a4a4a;
+.cart-item-btn button {
+  height: 50%;
+  width: 35px;
+  margin: 0;
+  border: 1px solid #e1e1e1;
+  background-color: white;
+  color: #4a4a4a;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.cart-item-btn button:hover {
+  border: 1px solid #e1e1e1;
+  background: #e1e1e1;
+}
+
+.cart-item-btn .sub-btn[disabled]:hover {
+  cursor: not-allowed;
+}
+
+.cart-item-desc .cart-item-desc-link {
+  text-decoration: none;
+  color: #101010;
+  cursor: pointer;
 }
 
 .cart-item-desc h4 {
-    font-size: 14px;
-    margin: 0;
-    width: 142px;
-    font-weight: bold;
-    text-decoration: underline;
-    padding: 10px;
+  font-size: 14px;
+  margin: 0;
+  width: 142px;
+  font-weight: bold;
+  text-decoration: underline;
+  padding: 10px;
 }
 
 .cart-item-detail {
-    display: flex;
-    height: 50%;
+  display: flex;
+  height: 50%;
 }
 
-.quantity, .size, .color {
-    width: 100%;
-    padding: 10px;
+.quantity,
+.size,
+.color {
+  width: 100%;
+  padding: 10px;
 }
 
 .color {
-    display: flex;
+  display: flex;
 }
 
 .close-btn {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #e1e1e1;
-    background-color: white;
-    color: #4a4a4a;
+  width: 40px;
+  border: 1px solid #e1e1e1;
+  background-color: white;
+  color: #4a4a4a;
+}
+
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+  padding: 6px 16px;
 }
 
 hr {
-    border: 0;
-    border-top: 1px solid #e1e1e1;
+  border: 0;
+  border-top: 1px solid #e1e1e1;
 }
 
 .total-title {
-    font-size: 12px;
-    color: #4a4a4a;
-    line-height: 2.4rem;
+  font-size: 12px;
+  color: #4a4a4a;
+  line-height: 2.4rem;
 }
 
 .total h2 {
-    font-size: 24px;
-    margin: 10px 0;
-    font-weight: 500;
+  font-size: 24px;
+  margin: 10px 0;
+  font-weight: 500;
 }
 
 .cart-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .checkout-btn {
-    color: white !important;
-    background-color: black !important; 
+  color: white !important;
+  background-color: black !important;
 }
 
-.text-center{
-    text-align: center;
-    color: #4a4a4a;
-    line-height: 2.4rem;
+.text-center {
+  text-align: center;
+  color: #4a4a4a;
+  line-height: 2.4rem;
 }
 
-.d-flex-center{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.d-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.button-close{
-    font-size: 12px;
-    padding: 12px 16px;
-    border: 1px solid #e1e1e1;
-    color: #4a4a4a;
-    background: transparent;
+.button-close {
+  font-size: 12px;
+  padding: 12px 16px;
+  border: 1px solid #e1e1e1;
+  color: #4a4a4a;
+  background: transparent;
 }
 
-.button-close:hover{
-    border: 1px solid #e1e1e1;
-    background: #e1e1e1;
-    cursor: pointer;
+.button-close:hover {
+  border: 1px solid #e1e1e1;
+  background: #e1e1e1;
+  cursor: pointer;
 }
 
-.button-signin{
-    font-size: 12px;
-    padding: 12px 16px;
-    background: #101010;
-    color: #fff;
-    border: none;
+.button-signin {
+  font-size: 12px;
+  padding: 12px 16px;
+  background: #101010;
+  color: #fff;
+  border: none;
 }
 
-.button-signin:hover{
-    cursor: pointer;
-    background: #2a2a2a;
+.button-signin:hover {
+  cursor: pointer;
+  background: #2a2a2a;
 }
+
+.disabled-btn {
+  opacity: 0.5;
+}
+
+
+.MuiButtonBase-root:disabled {
+    cursor: not-allowed !important;
+    pointer-events: auto !important;
+  }

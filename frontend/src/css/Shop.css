@@ -6,7 +6,7 @@
 .shop-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 
 }
 
@@ -16,6 +16,7 @@
     border: 1px solid #e1e1e1;
     margin-bottom: 20px;
     overflow: hidden;
+    margin: 0 8px 20px;
 }
 
 .shop-item:hover {
@@ -24,6 +25,37 @@
 
 .shop-item-wrap {
     transition: 0.5s;
+}
+
+.show-more{
+    padding: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+.show-more-btn{
+    font-size: 12px;
+    padding: 12px 16px;
+    background: #101010;
+    border: 1px solid #101010;
+    color: #fff;
+    font-weight: 500;
+}
+
+.show-more-btn.inactive{
+    font-size: 12px;
+    padding: 12px 16px;
+    background: #101010;
+    border: 1px solid #101010;
+    color: #fff;
+    font-weight: 500;
+    display: none;
+}
+
+.show-more-btn:hover{
+    cursor: pointer;
+    background: #2a2a2a;
+    border: 1px solid #2a2a2a;
 }
 
 
