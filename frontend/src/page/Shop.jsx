@@ -17,6 +17,7 @@ export default function Shop() {
 
   const [displayedProducts, setDisplayedProducts] = useState(shopList);
   const [showMoreButton, setShowMoreButton] = useState(true);
+  const [showFilterTitle, setShowFilterTitle] = useState(false);
   const { selectFilter, setSelectFilter, filterFields, setFilterFields } =
     useContext(shopFilterContext);
 
@@ -28,6 +29,16 @@ export default function Shop() {
   const showMoreHandle = () => {
     setShowMoreButton(false);
     setDisplayedProducts(shopList);
+  };
+
+  const filterRemoveHandle = (filter) => {
+    if (filter === "brand") {
+      setFilterFields({ ...filterFields, brand: "All Brands" });
+    } else if (filter === "price") {
+      setFilterFields({ ...filterFields, valuePrice: [67, 674] });
+    } else if (filter === "sortBy") {
+      setFilterFields({ ...filterFields, sortBy: "None" });
+    }
   };
 
   const displayedFilterProducts = shopList
@@ -84,6 +95,7 @@ export default function Shop() {
           setShowMoreButton(false);
         }
         setDisplayedProducts(displayedFilterProducts);
+        setShowMoreButton(false);
       }
     } else {
       if (shopList.length > 12 && showMoreButton) {
@@ -93,15 +105,90 @@ export default function Shop() {
           setShowMoreButton(false);
         }
         setDisplayedProducts(shopList);
+        setShowMoreButton(false);
       }
     }
   }, [shopList, showMoreButton, selectFilter, filterFields]);
+
+  useEffect(() => {
+    if (
+      filterFields.brand === "All Brands" &&
+      filterFields.sortBy === "None" &&
+      filterFields.valuePrice[0] === 67 &&
+      filterFields.valuePrice[1] === 674
+    ) {
+      setShowFilterTitle(false);
+    } else {
+      setShowFilterTitle(true);
+    }
+  }, [filterFields]);
 
   useTitle("Shop");
   return (
     <div>
       <Nav />
       <div className="shop-content">
+        {selectFilter && showFilterTitle && (
+          <div>
+            <div className="shop-content-header">
+              <div className="shop-content-header-title">
+                <h5>Found {displayedProducts.length} products</h5>
+              </div>
+            </div>
+            <div className="shop-applied-filters">
+              {filterFields.brand === "All Brands" || (
+                <div className="selected-filter">
+                  <span className="filter-name">Brand</span>
+                  <div className="filter-option">
+                    <h5 className="filter-option-title">
+                      {filterFields.brand}
+                    </h5>
+                    <div
+                      className="filter-remove"
+                      onClick={() => filterRemoveHandle("brand")}
+                    >
+                      x
+                    </div>
+                  </div>
+                </div>
+              )}
+              {(filterFields.valuePrice[0] === 67 &&
+                filterFields.valuePrice[1] === 674) || (
+                <div className="selected-filter">
+                  <span className="filter-name">Price Range</span>
+                  <div className="filter-option">
+                    <h5 className="filter-option-title">
+                      ${filterFields.valuePrice[0]} - $
+                      {filterFields.valuePrice[1]}
+                    </h5>
+                    <div
+                      className="filter-remove"
+                      onClick={() => filterRemoveHandle("price")}
+                    >
+                      x
+                    </div>
+                  </div>
+                </div>
+              )}
+              {filterFields.sortBy === "None" || (
+                <div className="selected-filter">
+                  <span className="filter-name">Sort By</span>
+                  <div className="filter-option">
+                    <h5 className="filter-option-title">
+                      {filterFields.sortBy}
+                    </h5>
+                    <div
+                      className="filter-remove"
+                      onClick={() => filterRemoveHandle("sortBy")}
+                    >
+                      x
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
         <div className="shop-list">
           {displayedProducts.map((item) => (
             <div

@@ -75,6 +75,11 @@ export default function FilterOptions() {
 
   const resetFilterHandle=()=>{
     setSelectFilter(false)
+    setFilterFields({
+      brand: "All Brands",
+      sortBy: "None",
+      valuePrice: [67,674]
+    })
     handleCloseModal()
   }
 
