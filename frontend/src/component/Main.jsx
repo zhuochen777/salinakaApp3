@@ -27,7 +27,7 @@ export default function Main() {
       <main className="content" style={{paddingTop: 0}}>
         <div className="home">
           <div className="banner">
-            <h1>See everything with Clarity</h1>
+            <h1 className="home-banner-title"><strong>See</strong> everything with <strong>Clarity</strong></h1>
             <p>
               Buying eyewear should leave you happy and good-looking, with money
               in your pocket. Glasses, sunglasses, and contacts—we've got your

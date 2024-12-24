@@ -1,0 +1,35 @@
+.feature-display {
+  padding: 0 100px;
+}
+
+.feature-banner-wrapper {
+  height: 400px;
+  background-color: #f9f9f9;
+  display: flex;
+}
+
+.feature-banner{
+    min-width: 350px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+h1{
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.feature-banner-img{
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://salinaka-ecommerce.web.app/images/banner-guy.fbf4f0f7396fe31ca288dc1dd9822342.png");
+    background-position: 10px center;
+    background-size: cover;
+}
+
+.product-display{
+    margin: 100px 0px 50px;
+}

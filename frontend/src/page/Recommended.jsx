@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setproductDetail } from "../store";
 import Product from "../component/Product";
 import useTitle from "../component/useTitle";
+import "../css/Recommended.css"
 
 export default function Recommended() {
   const productList = useSelector((state) => state.shop.productList);
@@ -20,12 +21,12 @@ export default function Recommended() {
   return (
     <>
       <Nav />
-      <div className="display">
-        <div className="display-header">
-          <h1>Recommended Products</h1>
-          <a href="/featured" className="featured-link">
-            See All
-          </a>
+      <div className="recommend-display">
+      <div className="recommend-banner-wrapper">
+          <div className="recommend-banner">
+            <h1>Recommended Products</h1>
+          </div>
+          <div className="recommend-banner-img"></div>
         </div>
         <div className="product-display">
           {productList.map((item) => (

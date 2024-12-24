@@ -1,0 +1,35 @@
+.recommend-display {
+  padding: 0 100px;
+}
+
+.recommend-banner-wrapper {
+  height: 400px;
+  background-color: #f9f9f9;
+  display: flex;
+}
+
+.recommend-banner {
+  min-width: 350px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.recommend-banner-img {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://salinaka-ecommerce.web.app/images/banner-girl-1.24e9b8f48d5a0ac32680edd194503695.png");
+  background-position: 10px center;
+  background-size: cover;
+}
+
+.product-display {
+  margin: 100px 0px 50px;
+}

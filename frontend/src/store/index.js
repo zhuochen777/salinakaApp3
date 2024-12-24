@@ -119,7 +119,7 @@ const ShopSlice = createSlice({
         summary: "Betsin Maalat",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat placeat similique dicta nulla praesentium deserunt. Corporis repellendus deleniti dolores eligendi.",
-        price: 56.0,
+        price: 76.0,
         isInCart: false,
         srcImg:
           "https://firebasestorage.googleapis.com/v0/b/salinaka-ecommerce.appspot.com/o/products%2F7l3FMZqY8JdfssalDgx2?alt=media&token=be15689c-e12c-4829-9d78-32395ef1e3f7",
@@ -134,7 +134,7 @@ const ShopSlice = createSlice({
       {
         id: 2,
         name: "Kulangot",
-        summary: "Salt",
+        summary: "Salt Maalat",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat placeat similique dicta nulla praesentium deserunt. Corporis repellendus deleniti dolores eligendi.",
         price: 67.0,
@@ -314,7 +314,7 @@ const ShopSlice = createSlice({
       {
         id: 12,
         name: "Sipon Malapot",
-        summary: "Salt",
+        summary: "Salt Maalat",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat placeat similique dicta nulla praesentium deserunt. Corporis repellendus deleniti dolores eligendi.",
         price: 250.0,
@@ -434,6 +434,7 @@ const ShopSlice = createSlice({
     ],
     // filteredProducts: JSON.parse(sessionStorage.getItem("filteredProducts")) || [],
     // filteredProducts: [],
+
   },
   reducers: {
     setProductList(state, action) {
